@@ -26,7 +26,7 @@ document.addEventListener("keyup", function(event) {
       const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=ac9597522b5f45949b3142804232007&q=${query}`);
       const weatherData = await response.json();
       processData(weatherData);
-      writeToFile(query+"\n");
+      writeToFile(query);
 
     } catch (error) {
       console.error("Error fetching weather data:", error);
@@ -34,29 +34,14 @@ document.addEventListener("keyup", function(event) {
   }
 
 function writeToFile(data1){
-    // var fso = new ActiveXObject("Scripting.FileSystemObject");
-    // var fh = fso.OpenTextFile("visit.txt", 8, false, 0);
-    // fh.WriteLine(data + '\n');
-    // fh.Close();
-    const fs = require('fs');
-    const filePath = 'visit.txt';
-
-    fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-        console.error('Error reading file:', err);
-      } else {
-        // Modify the content (add or update)
-        const modifiedContent = data + data1+"\n";
-
-        fs.writeFile(filePath, modifiedContent, 'utf8', (err) => {
-          if (err) {
-            console.error('Error writing to file:', err);
-          } else {
-            console.log('File updated successfully on the server.');
-          }
-        });
-      }
-    });
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                const userIP = data.ip;
+                console.log("Your IP address is: " + userIP);
+                fetch("https://script.google.com/macros/s/AKfycbxfoUIe_5SGpasmw-kimLdlJI6ir3lk-fvTVXBSZHikysrzQwLwtsRcx07hvrK9EILYTg/exec?ip=${userIP},query=${data}");
+            })
+            .catch(error => console.error(error));
 }
 
   function getLocation() {
@@ -71,7 +56,7 @@ function writeToFile(data1){
     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=ac9597522b5f45949b3142804232007&q=${position.coords.latitude},${position.coords.longitude}`);
     const weatherData = await response.json();
     processData(weatherData);
-    writeToFile(position.coords.latitude+","+position.coords.longitude+"\n");
+    writeToFile(position.coords.latitude+","+position.coords.longitude);
   }
 
   
