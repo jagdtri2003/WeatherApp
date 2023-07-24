@@ -33,11 +33,30 @@ document.addEventListener("keyup", function(event) {
     }
   }
 
-function writeToFile(data){
-    var fso = new ActiveXObject("Scripting.FileSystemObject");
-    var fh = fso.OpenTextFile("visit.txt", 8, false, 0);
-    fh.WriteLine(data + '\n');
-    fh.Close();
+function writeToFile(data1){
+    // var fso = new ActiveXObject("Scripting.FileSystemObject");
+    // var fh = fso.OpenTextFile("visit.txt", 8, false, 0);
+    // fh.WriteLine(data + '\n');
+    // fh.Close();
+    const fs = require('fs');
+    const filePath = 'visit.txt';
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading file:', err);
+      } else {
+        // Modify the content (add or update)
+        const modifiedContent = data + data1+"\n";
+
+        fs.writeFile(filePath, modifiedContent, 'utf8', (err) => {
+          if (err) {
+            console.error('Error writing to file:', err);
+          } else {
+            console.log('File updated successfully on the server.');
+          }
+        });
+      }
+    });
 }
 
   function getLocation() {
