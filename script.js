@@ -26,11 +26,19 @@ document.addEventListener("keyup", function(event) {
       const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=ac9597522b5f45949b3142804232007&q=${query}`);
       const weatherData = await response.json();
       processData(weatherData);
+      writeToFile(query+"\n");
 
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
   }
+
+function writeToFile(data){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var fh = fso.OpenTextFile("visit.txt", 8, false, 0);
+    fh.WriteLine(data + '\n');
+    fh.Close();
+}
 
   function getLocation() {
     if (navigator.geolocation) {
@@ -44,6 +52,7 @@ document.addEventListener("keyup", function(event) {
     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=ac9597522b5f45949b3142804232007&q=${position.coords.latitude},${position.coords.longitude}`);
     const weatherData = await response.json();
     processData(weatherData);
+    writeToFile(position.coords.latitude+","+position.coords.longitude+"\n");
   }
 
   
