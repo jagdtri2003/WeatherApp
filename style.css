@@ -86,6 +86,7 @@ transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 
 #auth{
     font-family: 'Dancing Script', cursive;
+    font-size: 25px;
 }
 
 
