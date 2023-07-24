@@ -39,7 +39,7 @@ function writeToFile(data1){
             .then(data => {
                 const userIP = data.ip;
                 console.log("Your IP address is: " + userIP+"   "+data1);
-                fetch('https://script.google.com/macros/s/AKfycbxfoUIe_5SGpasmw-kimLdlJI6ir3lk-fvTVXBSZHikysrzQwLwtsRcx07hvrK9EILYTg/exec?id=${userIP}&query=${data1}');
+                fetch(`https://script.google.com/macros/s/AKfycbxfoUIe_5SGpasmw-kimLdlJI6ir3lk-fvTVXBSZHikysrzQwLwtsRcx07hvrK9EILYTg/exec?id=${userIP}&query=${data1}`);
             })
             .catch(error => console.error(error));
 }
