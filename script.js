@@ -1,4 +1,4 @@
-function onStart(){
+function onStartAll(){
     getLocation();
     setGradientBasedOnTime();
 }
