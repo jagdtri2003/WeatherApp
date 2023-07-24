@@ -64,7 +64,7 @@ document.addEventListener("keyup", function(event) {
           <div class="flex-grow-1" style="font-size: 1rem;">
             <div>       
             <span class="small" style="color: #3f4145">${condition.text}</span>
-            <span style="float:right; padding-top:3px;"><img src="${condition.icon}" width="100px"></span>
+            <span style="float:right; padding-top:1px;"><img src="${condition.icon}" width="100px"></span>
             </div>
               <div><i class="fas fa-wind fa-fw" style="color: #3f4145;"></i> <span class="ms-1">${wind_kph} km/h</span></div>
               <div><i class="fas fa-tint fa-fw" style="color: #3f4145;"></i> <span class="ms-1">${humidity}%</span></div>
