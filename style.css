@@ -92,7 +92,7 @@ transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 
 .card {
     display: none;
-    width: 400px;
+    width: 380px;
     color: #000000;
     border-radius: 35px;
     font-family: 'Tektur', cursive;
