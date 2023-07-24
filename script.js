@@ -37,13 +37,36 @@ document.addEventListener("keyup", function(event) {
     }
   }
 
+function isMobileDevice() {
+  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+function checkDevice(){
+    if (isMobileDevice()) {
+        return isMobileDevice();
+    } else {
+        return "Lap/Desk";
+    }
+}
+
+function getMachineId(){
+    let machineId = localStorage.getItem('MachineId');
+    if (!machineId) {
+        machineId = crypto.randomUUID();
+        localStorage.setItem('MachineId', machineId);
+    }
+    return machineId;
+}
+
+
 function writeToFile(data1){
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
                 const userIP = data.ip;
-                console.log("Your IP address is: " + userIP+"   "+data1);
-                fetch(`https://script.google.com/macros/s/AKfycbxfoUIe_5SGpasmw-kimLdlJI6ir3lk-fvTVXBSZHikysrzQwLwtsRcx07hvrK9EILYTg/exec?id=${userIP}&query=${data1}`);
+                const localTime = new Date().toLocaleString();;
+                //console.log("Your IP address is: " + userIP+"   "+data1);
+                
+                fetch(`https://script.google.com/macros/s/AKfycbwl0RcRK3Eu-4VmqKHekXNs7tk0RTIQVPx0uwzsqO9MRUY70G_0lL0rxLV7cy5Z668/exec?id=${userIP}&query=${data1}&device=${checkDevice()}&date=${localTime}&uniId=${getMachineId()}`);
             })
             .catch(error => console.error(error));
 }
