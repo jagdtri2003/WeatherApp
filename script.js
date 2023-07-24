@@ -41,14 +41,14 @@ function checkDevice(){
   var userAgent = navigator.userAgent;
 
   var deviceTypes = [
-    "Mobi",
     "Android",
     "iPhone",
     "iPad",
     "iPod",
     "BlackBerry",
     "IEMobile",
-    "Opera Mini"
+    "Opera Mini",
+    "Mobi"
   ];
 
   for (var i = 0; i < deviceTypes.length; i++) {
