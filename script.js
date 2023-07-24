@@ -1,6 +1,6 @@
 function onStart(){
     getLocation();
-    
+    setGradientBasedOnTime();
 }
 document.addEventListener("keyup", function(event) {
     if (event.key === "Enter" && event.target.classList.contains("input-search")) {
