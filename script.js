@@ -1,3 +1,7 @@
+function onStart(){
+    getLocation();
+    
+}
 document.addEventListener("keyup", function(event) {
     if (event.key === "Enter" && event.target.classList.contains("input-search")) {
       event.preventDefault();
@@ -105,7 +109,6 @@ function writeToFile(data1){
 // Function to Set Color for Card according to the time 
 
 function setGradientBasedOnTime() {
-  getLocation();
   const now = new Date();
   const hour = now.getHours();
 
