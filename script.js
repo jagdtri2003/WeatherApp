@@ -37,15 +37,27 @@ document.addEventListener("keyup", function(event) {
     }
   }
 
-function isMobileDevice() {
-  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
 function checkDevice(){
-    if (isMobileDevice()) {
-        return isMobileDevice();
-    } else {
-        return "Lap/Desk";
+  var userAgent = navigator.userAgent;
+
+  var deviceTypes = [
+    "Mobi",
+    "Android",
+    "iPhone",
+    "iPad",
+    "iPod",
+    "BlackBerry",
+    "IEMobile",
+    "Opera Mini"
+  ];
+
+  for (var i = 0; i < deviceTypes.length; i++) {
+    if (userAgent.indexOf(deviceTypes[i]) !== -1) {
+      return deviceTypes[i];
     }
+  }
+
+  return "Lap/Desk";
 }
 
 function getMachineId(){
